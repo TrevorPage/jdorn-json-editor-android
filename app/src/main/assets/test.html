@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Basic JSON Editor Example</title>
+    <script src="file:///android_asset/jsoneditor.js"></script>
+    <script src='file:///android_asset/jquery-1.9.1.js'></script>
+    <link rel='stylesheet' href='file:///android_asset/spectrum.css'/>
+    <script src='file:///android_asset/spectrum.js'></script>
+</head>
+<body>
+<h1>Basic JSON Editor Example</h1>
+
+<div id='editor_holder'></div>
+<button id='submit'>Submit (console.log)</button>
+
+<input type='text' id="custom"/>
+
+<script>
+    $("input[type=color]").spectrum({
+        color: "#f00"
+    });
+</script>
+
+<script>
+    // Initialize the editor with a JSON schema
+    var editor = new JSONEditor(document.getElementById('editor_holder'), {
+
+        schema: {
+            "type": "array",
+            "items": {
+                "options": {
+                    "keep_oneof_values": false
+                },
+                "oneOf": [{
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "CAT",
+                                "DOG"
+                            ]
+                        }
+                    },
+                    "options": {
+                        "keep_oneof_values": false
+                    },
+                    "title": "item 1"
+                }, {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "VW",
+                                "AUDI",
+                                "SKODA"
+                            ]
+                        },
+                        "property2": {
+                            "type": "string"
+                        },
+                        "Options": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "someString": {
+                                        "type": "string"
+                                    },
+                                    "anotherString": {
+                                        "type": "string"
+                                    },
+                                    "colour": {
+                                        "type": "string",
+                                        "format": "color"
+                                    }
+
+                                }
+                            }
+                        }
+                    },
+                    "options": {
+                        "keep_oneof_values": false
+                    },
+                    "title": "item 1"
+                }]
+            }
+        }
+    });
+
+    // Hook up the submit button to log to the console
+    document.getElementById('submit').addEventListener('click', function() {
+        // Get the value from the editor
+        // console.log(editor.getValue());
+        // $("input[type=color]").spectrum({
+        //    color: "#f00"
+        // });
+    });
+</script>
+
+</body>
+</html>
