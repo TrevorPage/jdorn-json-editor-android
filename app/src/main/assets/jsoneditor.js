@@ -9,8 +9,6 @@
  * See README.md for requirements and usage info
  */
 
- alert("gaaaaah!!!!");
-
 (function() {
 
 /*jshint loopfunc: true */
